@@ -1,0 +1,17 @@
+name: build
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ilammy/msvc-dev-cmd@v1
+        with: { arch: x64 }
+      - run: cl /nologo /EHsc /O2 /MT /LD /std:c++17 /DUNICODE /D_UNICODE PsAiThumb.cpp /link /OUT:PsAiThumb.dll windowscodecs.lib shlwapi.lib ole32.lib advapi32.lib uuid.lib shell32.lib
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PsAiThumb
+          path: |
+            PsAiThumb.dll
+            install.bat
+            uninstall.bat
