@@ -14,6 +14,7 @@
 #include <shlwapi.h>
 #include <shlobj.h>
 #include <shobjidl.h>
+#include <olectl.h>
 #include <thumbcache.h>
 #include <wincodec.h>
 #include <wrl/client.h>
